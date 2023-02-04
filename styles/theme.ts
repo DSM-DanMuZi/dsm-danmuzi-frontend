@@ -3,6 +3,8 @@ const theme = {
     main01: "#FFD12D",
     main02: "#FFE380",
     main03: "#FFF8E1",
+    main04: "#FFF9E5",
+    main05: "#FFFCF0",
     gray100: "#FDFDFD",
     gray200: "#EDEDED",
     gray300: "#D3D3D3",
@@ -16,8 +18,14 @@ const theme = {
     error: "#DC3035",
     check: "#04DF00",
     focus: "#006EFF",
+    white: "#FFFFFF",
+    gray000: "#141414",
   },
-  font: {},
+  font: {
+    pretendard: "Pretendard",
+  },
 } as const;
 
 export default theme;
+
+export type ThemeType = typeof theme;
