@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
+import { GithubLogo } from "@/public/assets";
+import Image from "next/image";
 
 const Footer = () => {
+  const githubOnClick = () => {
+    window.location.href = "https://github.com/DSM-DStudy";
+  };
   return (
     <_Wrapper>
       <_InnerWrapper>
@@ -38,6 +43,7 @@ const Footer = () => {
           </_InnerDevelopersItems>
         </_Item>
       </_InnerWrapper>
+      <_GithubImage src={GithubLogo} onClick={githubOnClick} alt="깃허브 로고" />
     </_Wrapper>
   );
 };
@@ -49,15 +55,23 @@ const _Wrapper = styled.div`
   height: 240px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
+
+const _GithubImage = styled(Image)`
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+`
 
 const _InnerWrapper = styled.div`
   width: 80%;
-  height: 240px;
   border-top: 1px solid ${({ theme }) => theme.color.gray300};
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  padding-top: 3%;
+  margin-bottom: 20px;
 `;
 
 const _Item = styled.div`
@@ -74,7 +88,7 @@ const _DeveloperItems = styled.div`
 `;
 
 const _InnerDevelopersItems = styled.div`
-  width: 50px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
