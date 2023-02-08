@@ -43,14 +43,18 @@ const Footer = () => {
           </_InnerDevelopersItems>
         </_Item>
       </_InnerWrapper>
-      <_GithubImage src={GithubLogo} onClick={githubOnClick} alt="깃허브 로고" />
+      <_GithubImage
+        src={GithubLogo}
+        onClick={githubOnClick}
+        alt="깃허브 로고"
+      />
     </_Wrapper>
   );
 };
 
 export default Footer;
 
-const _Wrapper = styled.div`
+const _Wrapper = styled.footer`
   width: 100%;
   height: 240px;
   display: flex;
@@ -63,7 +67,7 @@ const _GithubImage = styled(Image)`
   width: 32px;
   height: 32px;
   cursor: pointer;
-`
+`;
 
 const _InnerWrapper = styled.div`
   width: 80%;
