@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { SearchButton } from "@/public/assets";
+import Image from "next/image";
 
 interface StyledType {
   inner: string;
@@ -14,7 +16,7 @@ const Header = () => {
         <_PageText>라운지</_PageText>
       </_TextWrapper>
       <_TextWrapper>
-        <_Clue>검색</_Clue>
+        <_Clue src={SearchButton} alt="search" />
         <_Button inner="로그인">로그인</_Button>
         <_Button inner="문의하기">문의하기</_Button>
       </_TextWrapper>
@@ -45,6 +47,7 @@ const _TextWrapper = styled.div`
   width: 20%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 `;
 
 const _PageText = styled.span`
@@ -58,9 +61,9 @@ const _PageText = styled.span`
   }
 `;
 
-const _Clue = styled.button`
-  width: 40px;
-  height: 40px;
+const _Clue = styled(Image)`
+  width: 25px;
+  height: 25px;
 `;
 
 const _Button = styled.button<StyledType>`
