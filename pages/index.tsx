@@ -9,7 +9,7 @@ export default function Home() {
         <title>단무지</title>
       </Head>
       <Header />
-      <Footer/>
+      <Footer />
     </>
   );
 }

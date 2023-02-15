@@ -77,7 +77,7 @@ const _InnerWrapper = styled.div`
   padding-top: 3%;
   margin-bottom: 20px;
 `;
-        
+
 const _Item = styled.div`
   display: flex;
   flex-direction: column;
