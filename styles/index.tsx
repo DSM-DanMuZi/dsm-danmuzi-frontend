@@ -1,5 +1,5 @@
 import { Global, ThemeProvider } from "@emotion/react";
-import theme from "./theme";
+import { theme } from "./theme";
 import global from "./global";
 
 interface PropsType {
