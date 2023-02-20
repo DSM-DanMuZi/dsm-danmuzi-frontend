@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-import { Logo } from "@/public/assets";
 
 interface PropsType {
   image_url: string;
