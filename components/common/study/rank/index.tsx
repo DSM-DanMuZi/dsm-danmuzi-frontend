@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import Img from "next/image";
-import Tag from "./tag";
 
 interface RankProps {
   rank: string;
@@ -10,6 +9,7 @@ interface RankProps {
   user_img: string;
   user_name: string;
   contents: string;
+  tag: string[];
 }
 
 const Rank = ({
@@ -20,6 +20,7 @@ const Rank = ({
   user_img,
   user_name,
   contents,
+  tag,
 }: RankProps) => {
   return (
     <Wrapper>
@@ -36,9 +37,11 @@ const Rank = ({
         </User>
         <Contents>{contents}</Contents>
         <TagContainer>
-          <Tag text="#디자이너" />
-          <Tag text="#피그마" />
-          <Tag text="#해시태그" />
+          {tag.map((tagtext: string, index: number) => {
+            if (index < 5) {
+              return <Tag key={index}>#{tagtext}</Tag>;
+            }
+          })}
         </TagContainer>
       </Right>
     </Wrapper>
@@ -110,4 +113,10 @@ const Contents = styled.p`
 
 const TagContainer = styled.div`
   display: flex;
+`;
+
+const Tag = styled.div`
+  color: ${({ theme }) => theme.color.gray500};
+  font-size: ${({ theme }) => theme.font.body2};
+  margin-right: 20px;
 `;
