@@ -4,7 +4,7 @@ import Tag from "./tag";
 
 interface RankProps {
   rank: string;
-  rankstate: string;
+  rankstate?: string;
   image: string;
   title: string;
   user_img: string;
@@ -49,11 +49,6 @@ export default Rank;
 
 const Wrapper = styled.div`
   display: flex;
-  div:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 `;
 
 const Ranking = styled.div`
@@ -94,12 +89,14 @@ const Title = styled.p`
 
 const User = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const User_Img = styled(Img)`
   width: 50px;
   height: 50px;
   border-radius: 16px;
+  margin-right: 28px;
 `;
 
 const User_Name = styled.p`
