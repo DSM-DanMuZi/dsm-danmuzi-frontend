@@ -48,4 +48,10 @@ const _Text = styled.span`
   ${({ theme }) => theme.font.body5};
   line-height: 30px;
   color: ${({ theme }) => theme.color.gray600};
+  margin-bottom: 12px;
+`;
+
+const _Type = styled.span`
+  ${({ theme }) => theme.font.body5}
+  color: ${({ theme }) => theme.color.gray600};
 `;
