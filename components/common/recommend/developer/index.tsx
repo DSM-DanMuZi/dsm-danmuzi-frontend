@@ -50,4 +50,3 @@ const _Type = styled.span`
   ${({ theme }) => theme.font.body5}
   color: ${({ theme }) => theme.color.gray600};
 `;
-z
