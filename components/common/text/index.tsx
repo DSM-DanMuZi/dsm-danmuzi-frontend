@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 interface PropsType {
-  type?: string;
+  type?: "text" | "password";
   name?: string;
   placeholder: string;
   value?: string;
