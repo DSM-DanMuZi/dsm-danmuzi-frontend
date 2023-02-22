@@ -8,7 +8,7 @@ interface PropsType {
   type: string;
 }
 
-const RecommendLecture = ({ image_url, title, name, type }: PropsType) => {
+const RecommendBook = ({ image_url, title, name, type }: PropsType) => {
   return (
     <_Wrapper>
       <_Image src={image_url} alt="image" />
@@ -19,34 +19,34 @@ const RecommendLecture = ({ image_url, title, name, type }: PropsType) => {
   );
 };
 
-export default RecommendLecture;
+export default RecommendBook;
 
 const _Wrapper = styled.div`
-  width: 460px;
+  width: 320px;
   display: flex;
   flex-direction: column;
 `;
 
 const _Image = styled(Image)`
-  width: 440px;
-  height: 280px;
-  margin-bottom: 20px;
+  width: 320px;
+  height: 400px;
+  margin-bottom: 18px;
 `;
 
 const _Type = styled.span`
-  ${({ theme }) => theme.font.body2}
-  color: ${({ theme }) => theme.color.gray400};
-  margin-bottom: 8px;
+  ${({ theme }) => theme.font.body4}
+  color: ${({ theme }) => theme.color.gray000};
+  margin-bottom: 6px;
 `;
 
 const _Title = styled.span`
-  ${({ theme }) => theme.font.title2};
-  line-height: 44px;
+  ${({ theme }) => theme.font.title3};
   color: ${({ theme }) => theme.color.gray000};
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 `;
 
 const _Name = styled.span`
-  ${({ theme }) => theme.font.body2};
+  ${({ theme }) => theme.font.body4};
+  line-height: 44px;
   color: ${({ theme }) => theme.color.gray000};
 `;
