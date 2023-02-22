@@ -34,7 +34,7 @@ const _Image = styled(Image)`
 `;
 
 const _Type = styled.span`
-  ${({ theme }) => theme.font.body2}
+  ${({ theme }) => theme.font.body2};
   color: ${({ theme }) => theme.color.gray400};
   margin-bottom: 8px;
 `;
