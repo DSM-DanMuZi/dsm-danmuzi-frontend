@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { color, keyOfColorType } from "./theme/color";
+import { color, keyOfColorType } from "../../../styles/theme/color";
 import { ReactElement, ReactNode } from "react";
 
 interface ButtonStyle {
