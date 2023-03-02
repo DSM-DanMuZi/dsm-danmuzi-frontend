@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Footer = () => {
   const githubOnClick = () => {
-    window.location.href = "https://github.com/DSM-DStudy";
+    window.location.href = "https://github.com/DSM-DanMuZi";
   };
   return (
     <_Wrapper>
@@ -112,4 +112,7 @@ const _MemberName = styled.a`
   font-size: 16px;
   line-height: 26px;
   text-decoration: none;
+  :hover {
+    color: ${({ theme }) => theme.color.gray900};
+  }
 `;
