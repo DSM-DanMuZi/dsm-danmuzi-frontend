@@ -1,28 +1,38 @@
 import styled from "@emotion/styled";
 import { SearchButton, Logo } from "@/public/assets";
 import Image from "next/image";
+import { useState } from "react";
 
 interface StyledType {
   inner: string;
 }
 
 const Header = () => {
+  const [login, setLogin] = useState<Boolean>(true);
   return (
     <_Wrapper>
-      <_LogoContainer>
+      <_LogoWrapper>
         <_Image src={Logo} alt="로고" />
         <_LogoName>단무지</_LogoName>
-      </_LogoContainer>
+      </_LogoWrapper>
       <_TextWrapper>
         <_PageText>책 & 인강 추천</_PageText>
         <_PageText>스터디</_PageText>
         <_PageText>라운지</_PageText>
       </_TextWrapper>
-      <_TextWrapper>
-        <_Clue src={SearchButton} alt="search" />
-        <_Button inner="로그인">로그인</_Button>
-        <_Button inner="문의하기">문의하기</_Button>
-      </_TextWrapper>
+      {!login ? (
+        <_TextWrapper>
+          <_Clue src={SearchButton} alt="search" />
+          <_Button inner="로그인">로그인</_Button>
+          <_Button inner="문의하기">문의하기</_Button>
+        </_TextWrapper>
+      ) : (
+        <_UserProfile>
+          <_Clue src={SearchButton} alt="search" />
+          <_UserImage></_UserImage>
+          <_UserName>장석연</_UserName>
+        </_UserProfile>
+      )}
     </_Wrapper>
   );
 };
@@ -38,8 +48,9 @@ const _Wrapper = styled.header`
   font-family: "Pretendard";
 `;
 
-const _LogoContainer = styled.div`
+const _LogoWrapper = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 
 const _Image = styled(Image)`
@@ -53,7 +64,6 @@ const _LogoName = styled.div`
   display: grid;
   place-content: center;
   margin-left: 16px;
-  cursor: pointer;
 `;
 
 const _TextWrapper = styled.div`
@@ -74,9 +84,17 @@ const _PageText = styled.span`
   }
 `;
 
+const SearchBar = styled.input`
+  width: 400px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid ${({theme}) => theme.color.gray600};
+`;
+
 const _Clue = styled(Image)`
   width: 25px;
   height: 25px;
+  cursor: pointer;
 `;
 
 const _Button = styled.button<StyledType>`
@@ -87,9 +105,33 @@ const _Button = styled.button<StyledType>`
   font-size: 20px;
   line-height: 32px;
   padding: 8px 24px;
+  transition: 0.5s;
   background-color: ${({ theme, inner }) =>
     inner === "로그인" ? theme.color.main01 : theme.color.gray100};
+  :hover {
+    background-color: ${({ theme, inner }) =>
+      inner === "문의하기" ? theme.color.gray200 : theme.color.main02};
+  }
   cursor: pointer;
   color: ${({ theme, inner }) =>
     inner === "로그인" ? theme.color.gray100 : theme.color.gray800};
+`;
+
+const _UserProfile = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const _UserImage = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  background-color: ${({ theme }) => theme.color.gray300};
+  margin-right: 28px;
+  margin-left: 28px;
+`;
+
+const _UserName = styled.div`
+  font-size: ${({ theme }) => theme.font.body2};
+  font-weight: bold;
 `;
