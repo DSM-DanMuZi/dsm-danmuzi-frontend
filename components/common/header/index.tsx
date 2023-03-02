@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { SearchButton } from "@/public/assets";
+import { SearchButton, Logo } from "@/public/assets";
 import Image from "next/image";
 
 interface StyledType {
@@ -9,7 +9,10 @@ interface StyledType {
 const Header = () => {
   return (
     <_Wrapper>
-      <_Logo>Logo</_Logo>
+      <_LogoContainer>
+        <_Image src={Logo} alt="로고" />
+        <_LogoName>단무지</_LogoName>
+      </_LogoContainer>
       <_TextWrapper>
         <_PageText>책 & 인강 추천</_PageText>
         <_PageText>스터디</_PageText>
@@ -35,11 +38,21 @@ const _Wrapper = styled.header`
   font-family: "Pretendard";
 `;
 
-const _Logo = styled.div`
-  width: 120px;
-  height: 60px;
+const _LogoContainer = styled.div`
+  display: flex;
+`;
+
+const _Image = styled(Image)`
+  width: 80px;
+  height: 80px;
+`;
+
+const _LogoName = styled.div`
+  font-weight: bold;
+  font-size: ${({ theme }) => theme.font.title3};
   display: grid;
   place-content: center;
+  margin-left: 16px;
   cursor: pointer;
 `;
 
