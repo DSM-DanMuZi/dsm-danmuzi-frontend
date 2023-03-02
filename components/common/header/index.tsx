@@ -2,13 +2,14 @@ import styled from "@emotion/styled";
 import { SearchButton, Logo } from "@/public/assets";
 import Image from "next/image";
 import { useState } from "react";
+import { css } from "@emotion/react";
 
 interface StyledType {
   inner: string;
 }
 
 const Header = () => {
-  const [login, setLogin] = useState<Boolean>(true);
+  const [login, setLogin] = useState<Boolean>(false);
   return (
     <_Wrapper>
       <_LogoWrapper>
@@ -67,10 +68,10 @@ const _LogoName = styled.div`
 `;
 
 const _TextWrapper = styled.div`
-  width: 20%;
+  width: 378px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const _PageText = styled.span`
@@ -84,20 +85,13 @@ const _PageText = styled.span`
   }
 `;
 
-const SearchBar = styled.input`
-  width: 400px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid ${({theme}) => theme.color.gray600};
-`;
-
 const _Clue = styled(Image)`
   width: 25px;
   height: 25px;
   cursor: pointer;
 `;
 
-const _Button = styled.button<StyledType>`
+const buttonCss = css`
   width: max-content;
   height: 48px;
   border-radius: 10px;
@@ -106,6 +100,10 @@ const _Button = styled.button<StyledType>`
   line-height: 32px;
   padding: 8px 24px;
   transition: 0.5s;
+`;
+
+const _Button = styled.button<StyledType>`
+  ${buttonCss}
   background-color: ${({ theme, inner }) =>
     inner === "로그인" ? theme.color.main01 : theme.color.gray100};
   :hover {
