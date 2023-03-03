@@ -18,5 +18,5 @@ const ButtonStyled = styled.button<ButtonStyleType>`
   ${({ buttonColor = "white", fontColor = "white" }) => css`
     background-color: ${color[buttonColor]};
     color: ${color[fontColor]};
-  `}
+  `};
 `;
