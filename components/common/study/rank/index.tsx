@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Img from "next/image";
 import { StudyRankType } from "@/utils/types/study";
+import { LoungeDevelop } from "@/public/assets";
 
 const Rank = ({
   rank,
@@ -18,11 +19,11 @@ const Rank = ({
         <RankingNumber>{rank}</RankingNumber>
         <RankingState>{rankState}</RankingState>
       </Ranking>
-      <Image src={image} alt="img" />
+      <Image src={LoungeDevelop} alt="img" />
       <Right>
         <Title>{title}</Title>
         <User>
-          <User_Img src={user_img} alt="user_img" />
+          <User_Img src={LoungeDevelop} alt="user_img" />
           <User_Name>{user_name}</User_Name>
         </User>
         <Contents>{contents}</Contents>
@@ -42,6 +43,7 @@ export default Rank;
 
 const Wrapper = styled.div`
   display: flex;
+  margin-bottom: 80px;
 `;
 
 const Ranking = styled.div`
