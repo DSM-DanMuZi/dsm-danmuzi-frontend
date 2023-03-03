@@ -3,36 +3,45 @@ import { SearchButton, Logo } from "@/public/assets";
 import Image from "next/image";
 import { useState } from "react";
 import { css } from "@emotion/react";
+import Link from "next/link";
 
 interface StyledType {
   inner: string;
 }
 
 const Header = () => {
-  const [login, setLogin] = useState<Boolean>(false);
+  const [login, setLogin] = useState<Boolean>(true);
+  const [search, setSearch] = useState<Boolean>(false);
+
+  const handleClick = () => {
+    setSearch(!search);
+  };
+
   return (
     <_Wrapper>
       <_LogoWrapper>
         <_Image src={Logo} alt="로고" />
         <_LogoName>단무지</_LogoName>
       </_LogoWrapper>
-      <_TextWrapper>
-        <_PageText>책 & 인강 추천</_PageText>
-        <_PageText>스터디</_PageText>
-        <_PageText>라운지</_PageText>
-      </_TextWrapper>
+      {search && <SearchBar />}
+      <_Clue onClick={handleClick} src={SearchButton} alt="search" />
       {!login ? (
-        <_TextWrapper>
-          <_Clue src={SearchButton} alt="search" />
+        <_LoginWrapper>
           <_Button inner="로그인">로그인</_Button>
           <_Button inner="문의하기">문의하기</_Button>
-        </_TextWrapper>
+        </_LoginWrapper>
       ) : (
-        <_UserProfile>
-          <_Clue src={SearchButton} alt="search" />
-          <_UserImage></_UserImage>
-          <_UserName>장석연</_UserName>
-        </_UserProfile>
+        <>
+          <_TextWrapper>
+            <_PageText>책 & 인강 추천</_PageText>
+            <_PageText>스터디</_PageText>
+            <_PageText>라운지</_PageText>
+          </_TextWrapper>
+          <_UserProfile>
+            <_UserImage></_UserImage>
+            <_UserName>장석연</_UserName>
+          </_UserProfile>
+        </>
       )}
     </_Wrapper>
   );
@@ -40,17 +49,22 @@ const Header = () => {
 
 export default Header;
 
+const TextCss = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const _Wrapper = styled.header`
+  ${TextCss}
   height: 100px;
   background: ${({ theme }) => theme.color.white};
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   font-family: "Pretendard";
 `;
 
 const _LogoWrapper = styled.div`
   display: flex;
+  margin-left: 76px;
   cursor: pointer;
 `;
 
@@ -67,11 +81,19 @@ const _LogoName = styled.div`
   margin-left: 16px;
 `;
 
+const SearchBar = styled.input`
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  flex: none;
+  position: absolute;
+  right: 430px;
+  border: 2px solid ${({ theme }) => theme.color.gray600};
+`;
+
 const _TextWrapper = styled.div`
   width: 378px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${TextCss}
 `;
 
 const _PageText = styled.span`
@@ -79,7 +101,7 @@ const _PageText = styled.span`
   font-size: 20px;
   cursor: pointer;
   font-weight: 600;
-  line-height: 32px;
+
   :hover {
     color: ${({ theme }) => theme.color.gray000};
   }
@@ -88,10 +110,12 @@ const _PageText = styled.span`
 const _Clue = styled(Image)`
   width: 25px;
   height: 25px;
+  position: fixed;
+  right: 385px;
   cursor: pointer;
 `;
 
-const buttonCss = css`
+const _Button = styled.button<StyledType>`
   width: max-content;
   height: 48px;
   border-radius: 10px;
@@ -100,24 +124,28 @@ const buttonCss = css`
   line-height: 32px;
   padding: 8px 24px;
   transition: 0.5s;
-`;
-
-const _Button = styled.button<StyledType>`
-  ${buttonCss}
   background-color: ${({ theme, inner }) =>
     inner === "로그인" ? theme.color.main01 : theme.color.gray100};
+  color: ${({ theme, inner }) =>
+    inner === "로그인" ? theme.color.gray100 : theme.color.gray800};
   :hover {
     background-color: ${({ theme, inner }) =>
       inner === "문의하기" ? theme.color.gray200 : theme.color.main02};
   }
   cursor: pointer;
-  color: ${({ theme, inner }) =>
-    inner === "로그인" ? theme.color.gray100 : theme.color.gray800};
+`;
+
+const _LoginWrapper = styled.div`
+  ${TextCss}
+  width: 248px;
+  margin-right: 100px;
 `;
 
 const _UserProfile = styled.div`
-  display: flex;
-  align-items: center;
+  ${TextCss}
+  width: 130px;
+  margin-right: 220px;
+  cursor: pointer;
 `;
 
 const _UserImage = styled.div`
@@ -125,8 +153,6 @@ const _UserImage = styled.div`
   height: 50px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.color.gray300};
-  margin-right: 28px;
-  margin-left: 28px;
 `;
 
 const _UserName = styled.div`
