@@ -13,7 +13,7 @@ export default Button;
 const ButtonStyled = styled.button<ButtonStyleType>`
   padding: 8px 24px;
   border-radius: 10px;
-  ${({ theme }) => theme.font.body3}
+  ${({ theme }) => theme.font.body3};
   cursor: pointer;
   ${({ buttonColor = "white", fontColor = "white" }) => css`
     background-color: ${color[buttonColor]};
