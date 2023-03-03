@@ -1,14 +1,6 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-
-interface PropsType {
-  image_url: string;
-  publisher: string;
-  date: string;
-  title: string;
-  contents: string;
-  hash_tag: string;
-}
+import { LoungePostType } from "@/utils/types/lounge";
 
 const LoungePost = ({
   image_url,
@@ -17,7 +9,7 @@ const LoungePost = ({
   title,
   contents,
   hash_tag,
-}: PropsType) => {
+}: LoungePostType) => {
   return (
     <_Wrapper>
       <_Image src={image_url} alt="Lounge Image" />

@@ -1,14 +1,8 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import { StudyPostType } from "@/utils/types/study";
 
-interface PropsType {
-  image_url: string;
-  title: string;
-  contents: string;
-  hash_tag: string[];
-}
-
-const StudyPost = ({ image_url, title, contents, hash_tag }: PropsType) => {
+const StudyPost = ({ image_url, title, contents, hash_tag }: StudyPostType) => {
   return (
     <_Wrapper>
       <_Image src={image_url} alt="image" />

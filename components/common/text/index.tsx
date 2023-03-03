@@ -1,14 +1,5 @@
 import styled from "@emotion/styled";
-
-interface PropsType {
-  type?: "text" | "password";
-  name?: string;
-  placeholder: string;
-  value?: string;
-  error?: boolean;
-  errorMsg?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { TextFieldType } from "@/utils/types/text";
 
 const TextField = ({
   type,
@@ -18,7 +9,7 @@ const TextField = ({
   error,
   errorMsg,
   onChange,
-}: PropsType) => {
+}: TextFieldType) => {
   return (
     <_Wrapper>
       <_InputWrapper value={value}>

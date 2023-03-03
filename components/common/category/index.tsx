@@ -1,12 +1,8 @@
 import styled from "@emotion/styled";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import { LoungeCategoryType } from "@/utils/types/lounge";
 
-interface PropsType {
-  contents: string;
-  image_url: StaticImageData;
-}
-
-const LoungeCategory = ({ contents, image_url }: PropsType) => {
+const LoungeCategory = ({ contents, image_url }: LoungeCategoryType) => {
   return (
     <_Wrapper>
       <_ImageWrapper>
