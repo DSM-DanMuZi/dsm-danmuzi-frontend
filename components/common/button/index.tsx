@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { color } from "../../../styles/theme/color";
 import { ReactElement } from "react";
-import { ButtonStyleType, ButtonPropsType } from "@/utils/types/button";
+import { ButtonPropsType, ButtonStyleType } from "@/utils/types/button";
 
 const Button = ({ children, ...rest }: ButtonPropsType): ReactElement => {
   return <ButtonStyled {...rest}>{children}</ButtonStyled>;
