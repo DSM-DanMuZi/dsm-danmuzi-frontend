@@ -157,7 +157,7 @@ const _SignUpText = styled.span`
   cursor: pointer;
 `;
 
-const _LoginImage = styled(Image) `
+const _LoginImage = styled(Image)`
   width: 100%;
   height: 100%;
-`
+`;
