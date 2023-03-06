@@ -43,8 +43,8 @@ export default TextField;
 
 const _Wrapper = styled.div<{ width?: number; height?: number }>`
   ${({ width = 554, height = 40 }) => css`
-    width: ${width};
-    height: ${height};
+    width: ${width <= 100 ? `${width}%` : `${width}px`};
+    height: ${height <= 100 ? `${height}%` : `${height}px`};
   `}
 `;
 

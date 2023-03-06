@@ -32,9 +32,10 @@ const LoungePost = ({
 export default LoungePost;
 
 const _Wrapper = styled.div`
-  width: 460px;
+  width: 440px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
 `;
 
 const _Image = styled(Image)`
