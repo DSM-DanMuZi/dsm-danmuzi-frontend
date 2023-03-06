@@ -22,6 +22,9 @@ const _Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  margin-right: 30px;
 `;
 
 const _ImageWrapper = styled.div`
@@ -37,9 +40,11 @@ const _ImageWrapper = styled.div`
 `;
 
 const _BackgroundImage = styled(Image)`
-  width: 100%;
+  width: 360px;
   height: 100%;
   border-radius: 12px;
+  background-size: cover;
+  filter: brightness(50%);
   :hover {
     opacity: 0.6;
   }
