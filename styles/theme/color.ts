@@ -13,12 +13,14 @@ export const color = {
   gray700: "#7C7C7C",
   gray800: "#505050",
   gray900: "#343434",
+  gray000: "#141414",
   background: "#FFFBFB",
   error: "#DC3035",
   check: "#04DF00",
   focus: "#006EFF",
   white: "#FFFFFF",
-  gray000: "#141414",
+  black: "#000000",
+
 } as const;
 
 export type keyOfColorType = keyof typeof color;

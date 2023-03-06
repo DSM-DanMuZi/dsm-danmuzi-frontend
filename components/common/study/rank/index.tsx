@@ -1,38 +1,29 @@
 import styled from "@emotion/styled";
 import Img from "next/image";
-
-interface RankProps {
-  rank: string;
-  rankstate?: string;
-  image: string;
-  title: string;
-  user_img: string;
-  user_name: string;
-  contents: string;
-  tag: string[];
-}
+import { StudyRankType } from "@/utils/types/study";
+import { LoungeDevelop } from "@/public/assets";
 
 const Rank = ({
   rank,
-  rankstate,
+  rankState,
   image,
   title,
   user_img,
   user_name,
   contents,
   tag,
-}: RankProps) => {
+}: StudyRankType) => {
   return (
     <Wrapper>
       <Ranking>
         <RankingNumber>{rank}</RankingNumber>
-        <RankingState>{rankstate}</RankingState>
+        <RankingState>{rankState}</RankingState>
       </Ranking>
-      <Image src={image} alt="img" />
+      <Image src={LoungeDevelop} alt="img" />
       <Right>
         <Title>{title}</Title>
         <User>
-          <User_Img src={user_img} alt="user_img" />
+          <User_Img src={LoungeDevelop} alt="user_img" />
           <User_Name>{user_name}</User_Name>
         </User>
         <Contents>{contents}</Contents>
@@ -52,6 +43,7 @@ export default Rank;
 
 const Wrapper = styled.div`
   display: flex;
+  margin-bottom: 80px;
 `;
 
 const Ranking = styled.div`

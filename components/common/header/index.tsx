@@ -67,7 +67,7 @@ const TextCss = css`
 `;
 
 const _Wrapper = styled.header`
-  ${TextCss}
+  width: 100%;
   height: 100px;
   background: ${({ theme }) => theme.color.white};
   font-family: "Pretendard";

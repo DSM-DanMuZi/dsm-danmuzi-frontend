@@ -1,17 +1,12 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import { StudyPostType } from "@/utils/types/study";
+import { LoungeDevelop } from "@/public/assets";
 
-interface PropsType {
-  image_url: string;
-  title: string;
-  contents: string;
-  hash_tag: string[];
-}
-
-const StudyPost = ({ image_url, title, contents, hash_tag }: PropsType) => {
+const StudyPost = ({ image_url, title, contents, hash_tag }: StudyPostType) => {
   return (
     <_Wrapper>
-      <_Image src={image_url} alt="image" />
+      <_Image src={LoungeDevelop} alt="image" />
       <_Title>{title}</_Title>
       <_Contents>{contents}</_Contents>
       <_TagWrapper>
@@ -31,6 +26,7 @@ const _Wrapper = styled.div`
   width: 440px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 const _Image = styled(Image)`

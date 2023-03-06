@@ -1,3 +1,11 @@
 export { default as GithubLogo } from "./github.svg";
 export { default as SearchButton } from "./search-button.svg";
 export { default as Logo } from "./main-logo.svg";
+export { default as LoungeDevelop } from "./lounge_develop.png";
+export { default as LoginMain } from "./login_image.svg";
+export { default as LoungeUiUx } from "./lounge_ui_ux.png";
+export { default as LoungePlanning } from "./lounge_planning.png";
+export { default as LoungeGraphic } from "./lounge_graphic.png";
+export { default as LoungeIllustration } from "./lounge_illustration.png";
+export { default as LoungeVideo } from "./lounge_video.png";
+export { default as LoungeProduct } from './lounge_product.png';
