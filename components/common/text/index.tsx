@@ -1,16 +1,10 @@
 import styled from "@emotion/styled";
-
-interface PropsType {
-  type?: "text" | "password";
-  name?: string;
-  placeholder: string;
-  value?: string;
-  error?: boolean;
-  errorMsg?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { TextFieldType } from "@/utils/types/text";
+import { useState, useRef } from "react";
+import { css } from "@emotion/react";
 
 const TextField = ({
+  text,
   type,
   name,
   placeholder,
@@ -18,16 +12,26 @@ const TextField = ({
   error,
   errorMsg,
   onChange,
-}: PropsType) => {
+  width,
+  height,
+}: TextFieldType) => {
+  const [inputClick, setInputClick] = useState<boolean>(false);
+  const ref = useRef<HTMLInputElement>(null);
+
   return (
-    <_Wrapper>
-      <_InputWrapper value={value}>
+    <_Wrapper width={width} height={height}>
+      <_UpperText>{(error || inputClick) && text}</_UpperText>
+      <_InputWrapper error={error} value={value}>
         <_Input
+          ref={ref}
           type={type}
           name={name}
-          placeholder={placeholder}
+          placeholder={inputClick ? "" : placeholder}
           value={value}
           onChange={onChange}
+          autoComplete="off"
+          onFocus={() => setInputClick(true)}
+          onBlur={() => setInputClick(value ? true : false)}
         />
       </_InputWrapper>
       {error && <_ErrorText>{errorMsg}</_ErrorText>}
@@ -37,29 +41,37 @@ const TextField = ({
 
 export default TextField;
 
-const _Wrapper = styled.div`
-  width: 640px;
-  height: 64px;
+const _Wrapper = styled.div<{ width?: number; height?: number }>`
+  ${({ width = 554, height = 40 }) => css`
+    width: ${width};
+    height: ${height};
+  `}
 `;
 
-const _InputWrapper = styled.div<{ value?: string }>`
-  width: 640px;
-  height: 64px;
-  padding: 16px 21px;
+const _InputWrapper = styled.div<{ error?: boolean; value?: string }>`
+  width: 100%;
+  height: 40px;
   box-sizing: border-box;
-  border: 1px solid
-    ${({ theme, value }) => (value ? theme.color.main01 : theme.color.gray300)};
-  border-radius: 10px;
+  padding: 6px 8px;
+  border-bottom: 1px solid
+    ${({ theme, value, error }) =>
+      error
+        ? theme.color.error
+        : value
+        ? theme.color.main01
+        : theme.color.gray400};
   display: flex;
   align-items: center;
   :focus-within {
-    border: 1px solid ${({ theme }) => theme.color.main01};
+    border-bottom: 1px solid
+      ${({ theme, error }) => (error ? theme.color.error : theme.color.main01)};
   }
 `;
 
 const _Input = styled.input`
   width: 100%;
-  height: 32px;
+  height: 28px;
+  background: transparent;
   color: ${({ theme }) => theme.color.gray900};
   ${({ theme }) => theme.font.body2};
   line-height: 32px;
@@ -74,4 +86,11 @@ const _ErrorText = styled.span`
   ${({ theme }) => theme.font.body6};
   color: ${({ theme }) => theme.color.error};
   line-height: 22px;
+`;
+
+const _UpperText = styled.p`
+  height: 20px;
+
+  ${({ theme }) => theme.font.body7};
+  color: ${({ theme }) => theme.color.main01};
 `;

@@ -27,6 +27,7 @@ const Header = () => {
 export default Header;
 
 const _Wrapper = styled.header`
+  width: 100%;
   height: 100px;
   background: ${({ theme }) => theme.color.white};
   display: flex;
