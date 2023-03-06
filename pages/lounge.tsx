@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Head from "next/head";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import { LoungePostType, LoungeCategoryType } from "@/utils/types/lounge";
@@ -10,6 +11,9 @@ import LoungeCategory from "@/components/common/category";
 const LoungePage = () => {
   return (
     <_Wrapper>
+      <Head>
+        <title>라운지</title>
+      </Head>
       <Header />
       <_ItemWrapper>
         <_Text>라운지 😍</_Text>
