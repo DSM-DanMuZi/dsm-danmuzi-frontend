@@ -32,12 +32,4 @@ const ButtonStyled = styled.button<ButtonStyle>`
     background-color: ${color[buttonColor]};
     color: ${color[fontColor]};
   `}
-  background-color: ${({ theme, inner }) =>
-    inner === "로그인" ? theme.color.main01 : theme.color.gray100};
-  color: ${({ theme, inner }) =>
-    inner === "로그인" ? theme.color.gray100 : theme.color.gray800};
-  :hover {
-    background-color: ${({ theme, inner }) =>
-      inner === "문의하기" ? theme.color.gray200 : theme.color.main02};
-  }
 `;
