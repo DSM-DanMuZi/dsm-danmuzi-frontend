@@ -1,4 +1,5 @@
 export interface TextFieldType {
+  text: string;
   type?: "text" | "password";
   name?: string;
   placeholder: string;
@@ -6,4 +7,6 @@ export interface TextFieldType {
   error?: boolean;
   errorMsg?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  width?: number;
+  height?: number;
 }
