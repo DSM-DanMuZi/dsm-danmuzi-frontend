@@ -4,18 +4,19 @@ import Image from "next/image";
 import { useState } from "react";
 import { css } from "@emotion/react";
 import Link from "next/link";
-
-interface StyledType {
-  inner: string;
-}
+import Button from "@/styles/button";
 
 const Header = () => {
-  const [login, setLogin] = useState<Boolean>(true);
+  const [login, setLogin] = useState<Boolean>(false);
   const [search, setSearch] = useState<Boolean>(false);
 
   const handleClick = () => {
     setSearch(!search);
   };
+
+  const searchOut = (e: React.MouseEvent<HTMLDivElement>)  => {
+    e.stopPropagation();
+  }
 
   return (
     <_Wrapper>
@@ -23,12 +24,22 @@ const Header = () => {
         <_Image src={Logo} alt="로고" />
         <_LogoName>단무지</_LogoName>
       </_LogoWrapper>
-      {search && <SearchBar />}
-      <_Clue onClick={handleClick} src={SearchButton} alt="search" />
+      {search && (
+        <SearchBarContainer onClick={searchOut}>
+          <SearchBar placeholder="검색어를 입력해주세요." />
+        </SearchBarContainer>
+      )}
+      {!search && (
+        <_Clue onClick={handleClick} src={SearchButton} alt="search" />
+      )}
       {!login ? (
         <_LoginWrapper>
-          <_Button inner="로그인">로그인</_Button>
-          <_Button inner="문의하기">문의하기</_Button>
+          <Button inner="로그인" buttonColor="main01" fontColor="gray100">
+            로그인
+          </Button>
+          <Button inner="문의하기" buttonColor="gray100" fontColor="gray000">
+            문의하기
+          </Button>
         </_LoginWrapper>
       ) : (
         <>
@@ -81,14 +92,23 @@ const _LogoName = styled.div`
   margin-left: 16px;
 `;
 
-const SearchBar = styled.input`
+const SearchBarContainer = styled.div`
   width: 300px;
   height: 40px;
-  border-radius: 10px;
-  flex: none;
+  border-radius: 40px;
   position: absolute;
-  right: 430px;
-  border: 2px solid ${({ theme }) => theme.color.gray600};
+  right: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.color.gray200};
+`;
+
+const SearchBar = styled.input`
+  width: 270px;
+  height: 40px;
+  ${({ theme }) => theme.font.body5}
+  background-color: ${({ theme }) => theme.color.gray200};
 `;
 
 const _TextWrapper = styled.div`
@@ -115,26 +135,6 @@ const _Clue = styled(Image)`
   cursor: pointer;
 `;
 
-const _Button = styled.button<StyledType>`
-  width: max-content;
-  height: 48px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 32px;
-  padding: 8px 24px;
-  transition: 0.5s;
-  background-color: ${({ theme, inner }) =>
-    inner === "로그인" ? theme.color.main01 : theme.color.gray100};
-  color: ${({ theme, inner }) =>
-    inner === "로그인" ? theme.color.gray100 : theme.color.gray800};
-  :hover {
-    background-color: ${({ theme, inner }) =>
-      inner === "문의하기" ? theme.color.gray200 : theme.color.main02};
-  }
-  cursor: pointer;
-`;
-
 const _LoginWrapper = styled.div`
   ${TextCss}
   width: 248px;
@@ -155,7 +155,7 @@ const _UserImage = styled.div`
   background-color: ${({ theme }) => theme.color.gray300};
 `;
 
-const _UserName = styled.div`
+const _UserName = styled.span`
   font-size: ${({ theme }) => theme.font.body2};
   font-weight: bold;
 `;
