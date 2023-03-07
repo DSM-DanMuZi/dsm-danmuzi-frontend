@@ -7,7 +7,7 @@ import Link from "next/link";
 import Button from "@/styles/button";
 
 const Header = () => {
-  const [login, setLogin] = useState<Boolean>(false);
+  const [login, setLogin] = useState<Boolean>(true);
   const [search, setSearch] = useState<Boolean>(false);
 
   const handleClick = () => {
@@ -34,10 +34,10 @@ const Header = () => {
       )}
       {!login ? (
         <_LoginWrapper>
-          <Button inner="로그인" buttonColor="main01" fontColor="gray100">
+          <Button buttonColor="main01" fontColor="gray100">
             로그인
           </Button>
-          <Button inner="문의하기" buttonColor="gray100" fontColor="gray000">
+          <Button buttonColor="gray100" fontColor="gray000">
             문의하기
           </Button>
         </_LoginWrapper>
@@ -71,6 +71,7 @@ const _Wrapper = styled.header`
   height: 100px;
   background: ${({ theme }) => theme.color.white};
   font-family: "Pretendard";
+  ${TextCss}
 `;
 
 const _LogoWrapper = styled.div`
@@ -121,7 +122,6 @@ const _PageText = styled.span`
   font-size: 20px;
   cursor: pointer;
   font-weight: 600;
-
   :hover {
     color: ${({ theme }) => theme.color.gray000};
   }
