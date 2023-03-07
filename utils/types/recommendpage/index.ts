@@ -11,3 +11,10 @@ export interface RecommendDeveloperType {
   text: string;
   type: string;
 }
+
+export interface RecommendDesignerType {
+  image_url: string;
+  name: string;
+  text: string;
+  type: string;
+}
