@@ -104,7 +104,7 @@ const ItemWrapper = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  margin-top: 180px;
 `;
 
 const Text = styled.p`

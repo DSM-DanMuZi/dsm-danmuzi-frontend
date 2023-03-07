@@ -87,6 +87,7 @@ const _Wrapper = styled.header`
   background: ${({ theme }) => theme.color.white};
   font-family: "Pretendard";
   ${TextCss}
+  position: fixed;
 `;
 
 const _LogoWrapper = styled.div`
