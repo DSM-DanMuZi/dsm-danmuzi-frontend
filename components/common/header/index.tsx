@@ -1,62 +1,145 @@
 import styled from "@emotion/styled";
-import { SearchButton } from "@/public/assets";
+import { SearchButton, Logo } from "@/public/assets";
 import Image from "next/image";
-
-interface StyledType {
-  inner: string;
-}
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { css } from "@emotion/react";
+import Link from "next/link";
+import Button from "../button";
 
 const Header = () => {
+  const [login, setLogin] = useState<Boolean>(true);
+  const [search, setSearch] = useState<Boolean>(false);
+
+  const handleClick = () => {
+    setSearch(!search);
+  };
+
+  const searchOut = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+
+  const router = useRouter();
+
   return (
     <_Wrapper>
-      <_Logo>Logo</_Logo>
-      <_TextWrapper>
-        <_PageText>책 & 인강 추천</_PageText>
-        <_PageText>스터디</_PageText>
-        <_PageText>라운지</_PageText>
-      </_TextWrapper>
-      <_TextWrapper>
-        <_Clue src={SearchButton} alt="search" />
-        <_Button inner="로그인">로그인</_Button>
-        <_Button inner="문의하기">문의하기</_Button>
-      </_TextWrapper>
+      <_LogoWrapper href="/main">
+        <_Image src={Logo} alt="로고" />
+        <_LogoName>단무지</_LogoName>
+      </_LogoWrapper>
+      {search && (
+        <SearchBarContainer onClick={searchOut}>
+          <SearchBar placeholder="검색어를 입력해주세요." />
+        </SearchBarContainer>
+      )}
+      {!search && (
+        <_Clue onClick={handleClick} src={SearchButton} alt="search" />
+      )}
+      {!login ? (
+        <_LoginWrapper>
+          <Button buttonColor="main01" fontColor="gray100">
+            로그인
+          </Button>
+          <Button buttonColor="gray100" fontColor="gray000">
+            문의하기
+          </Button>
+        </_LoginWrapper>
+      ) : (
+        <>
+          <_TextWrapper>
+            <_PageText
+              href="/recommendedpage"
+              isSelected={router.pathname === "/recommededpage"}
+            >
+              책 & 인강 추천
+            </_PageText>
+            <_PageText href="/study" isSelected={router.pathname === "/study"}>
+              스터디
+            </_PageText>
+            <_PageText
+              href="/lounge"
+              isSelected={router.pathname === "/lounge"}
+            >
+              라운지
+            </_PageText>
+          </_TextWrapper>
+          <_UserProfile>
+            <_UserImage></_UserImage>
+            <_UserName>장석연</_UserName>
+          </_UserProfile>
+        </>
+      )}
     </_Wrapper>
   );
 };
 
 export default Header;
 
+const TextCss = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const _Wrapper = styled.header`
   width: 100%;
   height: 100px;
   background: ${({ theme }) => theme.color.white};
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   font-family: "Pretendard";
+  ${TextCss}
+  position: fixed;
 `;
 
-const _Logo = styled.div`
-  width: 120px;
-  height: 60px;
+const _LogoWrapper = styled(Link)`
+  display: flex;
+  margin-left: 76px;
+  cursor: pointer;
+`;
+
+const _Image = styled(Image)`
+  width: 80px;
+  height: 80px;
+`;
+
+const _LogoName = styled.div`
+  font-weight: bold;
+  font-size: ${({ theme }) => theme.font.title3};
+   color: ${({theme}) => theme.color.gray000};
   display: grid;
   place-content: center;
-  cursor: pointer;
+  margin-left: 16px;
+`;
+
+const SearchBarContainer = styled.div`
+  width: 300px;
+  height: 40px;
+  border-radius: 40px;
+  position: absolute;
+  right: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.color.gray200};
+`;
+
+const SearchBar = styled.input`
+  width: 270px;
+  height: 40px;
+  ${({ theme }) => theme.font.body5}
+  background-color: ${({ theme }) => theme.color.gray200};
 `;
 
 const _TextWrapper = styled.div`
-  width: 20%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  width: 378px;
+  ${TextCss}
 `;
 
-const _PageText = styled.span`
-  color: ${({ theme }) => theme.color.gray700};
+const _PageText = styled(Link)<{ isSelected: boolean }>`
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.color.gray000 : theme.color.gray700};
   font-size: 20px;
   cursor: pointer;
   font-weight: 600;
-  line-height: 32px;
   :hover {
     color: ${({ theme }) => theme.color.gray000};
   }
@@ -65,19 +148,32 @@ const _PageText = styled.span`
 const _Clue = styled(Image)`
   width: 25px;
   height: 25px;
+  position: fixed;
+  right: 385px;
+  cursor: pointer;
 `;
 
-const _Button = styled.button<StyledType>`
-  width: max-content;
-  height: 48px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 32px;
-  padding: 8px 24px;
-  background-color: ${({ theme, inner }) =>
-    inner === "로그인" ? theme.color.main01 : theme.color.gray100};
+const _LoginWrapper = styled.div`
+  ${TextCss}
+  width: 248px;
+  margin-right: 100px;
+`;
+
+const _UserProfile = styled.div`
+  ${TextCss}
+  width: 130px;
+  margin-right: 220px;
   cursor: pointer;
-  color: ${({ theme, inner }) =>
-    inner === "로그인" ? theme.color.gray100 : theme.color.gray800};
+`;
+
+const _UserImage = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  background-color: ${({ theme }) => theme.color.gray300};
+`;
+
+const _UserName = styled.span`
+  font-size: ${({ theme }) => theme.font.body2};
+  font-weight: bold;
 `;
