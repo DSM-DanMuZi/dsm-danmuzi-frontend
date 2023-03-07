@@ -4,8 +4,10 @@ import styled from "@emotion/styled";
 import Head from "next/head";
 import RecommendBook from "@/components/common/recommend/book";
 import RecommendDeveloper from "@/components/common/recommend/developer";
-import { RecommendBookDummy, RecommendDeveloperDummy } from "@/utils/constance/recommendpage";
-import { RecommendBookType, RecommendDeveloperType } from "@/utils/types/recommendpage";
+import RecommendDesigner from "@/components/common/recommend/designer";
+import RecommendLecture from "@/components/common/recommend/lecture";
+import { RecommendBookDummy, RecommendDeveloperDummy, RecommendDesignerDummy, RecommendLectureDummy } from "@/utils/constance/recommendpage";
+import { RecommendBookType, RecommendDeveloperType, RecommendDesignerType, RecommendLectureType } from "@/utils/types/recommendpage";
 
 const RecommendedPage = () => {
   return (
@@ -45,12 +47,26 @@ const RecommendedPage = () => {
       <ItemWrapper>
         <Text>디자인 유튜버 ✍️</Text>
         <BookItemWrapper>
-          {RecommendDeveloperDummy.map((element: RecommendDeveloperType, idx: number) => (
-            <RecommendDeveloper
+          {RecommendDesignerDummy.map((element: RecommendDesignerType, idx: number) => (
+            <RecommendDesigner
               key={idx}
               image_url={element.image_url}
               type={element.type}
               text={element.text}
+              name={element.name}
+            />
+          ))}
+        </BookItemWrapper>
+      </ItemWrapper>
+      <ItemWrapper>
+        <Text>도움되는 영상 🎥</Text>
+        <BookItemWrapper>
+          {RecommendLectureDummy.map((element: RecommendLectureType, idx: number) => (
+            <RecommendLecture
+              key={idx}
+              image_url={element.image_url}
+              type={element.type}
+              title={element.title}
               name={element.name}
             />
           ))}
