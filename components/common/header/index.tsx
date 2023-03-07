@@ -2,9 +2,10 @@ import styled from "@emotion/styled";
 import { SearchButton, Logo } from "@/public/assets";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { css } from "@emotion/react";
 import Link from "next/link";
-import Button from "@/styles/button";
+import Button from "../button";
 
 const Header = () => {
   const [login, setLogin] = useState<Boolean>(true);
@@ -14,9 +15,11 @@ const Header = () => {
     setSearch(!search);
   };
 
-  const searchOut = (e: React.MouseEvent<HTMLDivElement>)  => {
+  const searchOut = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-  }
+  };
+
+  const router = useRouter();
 
   return (
     <_Wrapper>
@@ -44,9 +47,21 @@ const Header = () => {
       ) : (
         <>
           <_TextWrapper>
-            <_PageText>책 & 인강 추천</_PageText>
-            <_PageText>스터디</_PageText>
-            <_PageText>라운지</_PageText>
+            <Link href="/recommendedpage">
+              <_PageText isSelected={router.pathname === "/recommededpage"}>
+                책 & 인강 추천
+              </_PageText>
+            </Link>
+            <Link href="/study">
+              <_PageText isSelected={router.pathname === "/study"}>
+                스터디
+              </_PageText>
+            </Link>
+            <Link href="/lounge">
+              <_PageText isSelected={router.pathname === "/lounge"}>
+                라운지
+              </_PageText>
+            </Link>
           </_TextWrapper>
           <_UserProfile>
             <_UserImage></_UserImage>
@@ -117,8 +132,9 @@ const _TextWrapper = styled.div`
   ${TextCss}
 `;
 
-const _PageText = styled.span`
-  color: ${({ theme }) => theme.color.gray700};
+const _PageText = styled.span<{ isSelected: boolean }>`
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.color.gray000 : theme.color.gray700};
   font-size: 20px;
   cursor: pointer;
   font-weight: 600;
