@@ -4,3 +4,10 @@ export interface RecommendBookType {
   name: string;
   type: string;
 }
+
+export interface RecommendDeveloperType {
+  image_url: string;
+  name: string;
+  text: string;
+  type: string;
+}
