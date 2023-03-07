@@ -47,21 +47,21 @@ const Header = () => {
       ) : (
         <>
           <_TextWrapper>
-            <Link href="/recommendedpage">
-              <_PageText isSelected={router.pathname === "/recommededpage"}>
-                책 & 인강 추천
-              </_PageText>
-            </Link>
-            <Link href="/study">
-              <_PageText isSelected={router.pathname === "/study"}>
-                스터디
-              </_PageText>
-            </Link>
-            <Link href="/lounge">
-              <_PageText isSelected={router.pathname === "/lounge"}>
-                라운지
-              </_PageText>
-            </Link>
+            <_PageText
+              href="/recommendedpage"
+              isSelected={router.pathname === "/recommededpage"}
+            >
+              책 & 인강 추천
+            </_PageText>
+            <_PageText href="/study" isSelected={router.pathname === "/study"}>
+              스터디
+            </_PageText>
+            <_PageText
+              href="/lounge"
+              isSelected={router.pathname === "/lounge"}
+            >
+              라운지
+            </_PageText>
           </_TextWrapper>
           <_UserProfile>
             <_UserImage></_UserImage>
@@ -132,7 +132,7 @@ const _TextWrapper = styled.div`
   ${TextCss}
 `;
 
-const _PageText = styled.span<{ isSelected: boolean }>`
+const _PageText = styled(Link)<{ isSelected: boolean }>`
   color: ${({ theme, isSelected }) =>
     isSelected ? theme.color.gray000 : theme.color.gray700};
   font-size: 20px;
