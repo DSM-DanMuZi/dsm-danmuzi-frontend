@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <_Wrapper>
-      <_LogoWrapper>
+      <_LogoWrapper href="/main">
         <_Image src={Logo} alt="로고" />
         <_LogoName>단무지</_LogoName>
       </_LogoWrapper>
@@ -90,7 +90,7 @@ const _Wrapper = styled.header`
   position: fixed;
 `;
 
-const _LogoWrapper = styled.div`
+const _LogoWrapper = styled(Link)`
   display: flex;
   margin-left: 76px;
   cursor: pointer;
@@ -104,6 +104,7 @@ const _Image = styled(Image)`
 const _LogoName = styled.div`
   font-weight: bold;
   font-size: ${({ theme }) => theme.font.title3};
+   color: ${({theme}) => theme.color.gray000};
   display: grid;
   place-content: center;
   margin-left: 16px;

@@ -12,9 +12,7 @@ import {
   RecommendDesignerDummy,
   RecommendLectureDummy,
 } from "@/utils/constance/recommendpage";
-import {
-  RecommendationType
-} from "@/utils/types/recommendpage";
+import { RecommendationType } from "@/utils/types/recommendpage";
 
 const RecommendedPage = () => {
   return (
@@ -26,15 +24,17 @@ const RecommendedPage = () => {
       <ItemWrapper>
         <Text>고수들이 읽는 책😎</Text>
         <BookItemWrapper>
-          {RecommendBookDummy.map((element: RecommendationType, idx: number) => (
-            <RecommendBook
-              key={idx}
-              image_url={element.image_url}
-              type={element.type}
-              title={element.title}
-              name={element.name}
-            />
-          ))}
+          {RecommendBookDummy.map(
+            (element: RecommendationType, idx: number) => (
+              <RecommendBook
+                key={idx}
+                image_url={element.image_url}
+                type={element.type}
+                title={element.title}
+                name={element.name}
+              />
+            )
+          )}
         </BookItemWrapper>
       </ItemWrapper>
       <ItemWrapper>
@@ -105,6 +105,7 @@ const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 180px;
+  cursor: pointer;
 `;
 
 const Text = styled.p`
