@@ -42,6 +42,20 @@ const RecommendedPage = () => {
           ))}
         </BookItemWrapper>
       </ItemWrapper>
+      <ItemWrapper>
+        <Text>디자인 유튜버 ✍️</Text>
+        <BookItemWrapper>
+          {RecommendDeveloperDummy.map((element: RecommendDeveloperType, idx: number) => (
+            <RecommendDeveloper
+              key={idx}
+              image_url={element.image_url}
+              type={element.type}
+              text={element.text}
+              name={element.name}
+            />
+          ))}
+        </BookItemWrapper>
+      </ItemWrapper>
       <Footer />
     </RecommendContainer>
   );
