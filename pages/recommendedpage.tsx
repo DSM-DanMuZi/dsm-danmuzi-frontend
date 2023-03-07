@@ -3,8 +3,9 @@ import Footer from "../components/common/footer";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import RecommendBook from "@/components/common/recommend/book";
-import { RecommendBookDummy } from "@/utils/constance/recommendpage";
-import { RecommendBookType } from "@/utils/types/recommendpage";
+import RecommendDeveloper from "@/components/common/recommend/developer";
+import { RecommendBookDummy, RecommendDeveloperDummy } from "@/utils/constance/recommendpage";
+import { RecommendBookType, RecommendDeveloperType } from "@/utils/types/recommendpage";
 
 const RecommendedPage = () => {
   return (
@@ -22,6 +23,20 @@ const RecommendedPage = () => {
               image_url={element.image_url}
               type={element.type}
               title={element.title}
+              name={element.name}
+            />
+          ))}
+        </BookItemWrapper>
+      </ItemWrapper>
+      <ItemWrapper>
+        <Text>개발 관련 유튜버 💻</Text>
+        <BookItemWrapper>
+          {RecommendDeveloperDummy.map((element: RecommendDeveloperType, idx: number) => (
+            <RecommendDeveloper
+              key={idx}
+              image_url={element.image_url}
+              type={element.type}
+              text={element.text}
               name={element.name}
             />
           ))}
@@ -46,6 +61,7 @@ const ItemWrapper = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
+  margin-top: 80px;
 `;
 
 const Text = styled.p`
