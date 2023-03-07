@@ -18,3 +18,10 @@ export interface RecommendDesignerType {
   text: string;
   type: string;
 }
+
+export interface RecommendLectureType {
+  image_url: string;
+  name: string;
+  title: string;
+  type: string;
+}
