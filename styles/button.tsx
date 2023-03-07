@@ -6,7 +6,6 @@ import { ReactElement, ReactNode } from "react";
 interface ButtonStyle {
   buttonColor: keyOfColorType;
   fontColor: keyOfColorType;
-  inner: string;
 }
 
 interface ButtonProps
