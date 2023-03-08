@@ -48,8 +48,8 @@ const Header = () => {
         <>
           <_TextWrapper>
             <_PageText
-              href="/recommendedpage"
-              isSelected={router.pathname === "/recommededpage"}
+              href="/recommand"
+              isSelected={router.pathname === "/recommand"}
             >
               책 & 인강 추천
             </_PageText>
