@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <_Wrapper>
-      <_LogoWrapper href="/main">
+      <_LogoWrapper href="/">
         <_Image src={Logo} alt="로고" />
         <_LogoName>단무지</_LogoName>
       </_LogoWrapper>
