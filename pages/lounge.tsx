@@ -74,7 +74,7 @@ const _Wrapper = styled.div`
 
 const _ItemWrapper = styled.div`
   width: 80%;
-  margin-bottom: 100px;
+  margin: 180px 0 100px 0;
 `;
 
 const _Text = styled.p`
