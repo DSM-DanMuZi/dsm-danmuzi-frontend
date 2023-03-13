@@ -26,6 +26,7 @@ const _Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   transition: all 0.125s linear;
+  overflow: hidden;
   :hover {
     transform: scale(1.05);
   }
