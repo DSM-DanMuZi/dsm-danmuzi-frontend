@@ -1,15 +1,25 @@
 import styled from "@emotion/styled";
+import Image from "next/image";
 
 interface PropsType {
   title: string;
   contents: string;
   type: string;
-  inner: string;
+  image_url: string;
+  backgroundColor?: string;
+  fontColor?: string;
 }
 
-const RandomSite = ({ title, contents, type, inner }: PropsType) => {
+const RandomSite = ({
+  image_url,
+  title,
+  contents,
+  type,
+  backgroundColor,
+  fontColor,
+}: PropsType) => {
   return (
-    <Wrapper>
+    <Wrapper backgroundColor={backgroundColor} fontColor={fontColor}>
       <TextDiv>
         <Title>{title}</Title>
         <Contents>{contents}</Contents>
@@ -21,15 +31,16 @@ const RandomSite = ({ title, contents, type, inner }: PropsType) => {
 
 export default RandomSite;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<PropsType>`
   width: 700px;
   height: 200px;
   border-radius: 12px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
+  background-color: ${({ backgroundColor }) => backgroundColor || "transparent"};
+  color: ${({ fontColor }) => fontColor || "inherit"};
 `;
 
 const TextDiv = styled.div`
@@ -48,4 +59,10 @@ const Contents = styled.p`
 
 const Type = styled.p`
   ${({ theme }) => theme.font.body5}
+`;
+
+const _Image = styled(Image)`
+  width: 320px;
+  height: 400px;
+  margin-bottom: 18px;
 `;
