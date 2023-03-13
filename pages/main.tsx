@@ -1,6 +1,7 @@
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import styled from "@emotion/styled";
+import { GroupIcon, TossLogo } from "@/public/assets";
 import React, { useState, useEffect, useRef } from "react";
 import { RecommendBookDummy } from "@/utils/constance/recommendpage";
 import { StudyPostDummy } from "@/utils/constance/studypost";
@@ -58,16 +59,20 @@ const Main: React.FC = () => {
       </ItemWrapper>
       <RecommendSite>
         <RandomSite
-          inner="blue"
+          image_url={TossLogo}
           title="디자인 인강? 이거면 충분해"
           contents="Toss UX/UI Designer"
           type="Wanted"
+          backgroundColor="#F4F7FE"
+          fontColor="#006EFF"
         />
         <RandomSite
-          inner="pink"
+          image_url={GroupIcon}
           title="이 아이콘 무조껀 뜹니다."
           contents="3D icon 이거보다 이쁜 곳 나와보라그래!"
           type="3D icon"
+          backgroundColor="#FFFFFF"
+          fontColor="#BD44C0"
         />
       </RecommendSite>
       <ItemWrapper>
@@ -100,7 +105,7 @@ const MainWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   .component {
     position: absolute;
     width: 100%;
