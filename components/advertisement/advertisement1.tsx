@@ -2,23 +2,30 @@ import styled from "@emotion/styled";
 import Button from "../common/button";
 import { Advertisement1 } from "@/public/assets";
 import Image from "next/image";
+import NumberButton from "./numberbutton";
+import Link from "next/link";
 
 const Advertisement = () => {
   return (
     <Wrapper>
       <ColorBackground>
         <Left>
-          <Btn buttonColor="main01" fontColor="white">
-            책 & 인강 추천
-          </Btn>
-          <Text>무려.. 무려.... 실검 1위 책!!<br></br>
-          “ 개발자가 못하겠다고 하면 이렇게 말하세요.”</Text>
+          <Link href="./recommendedpage">
+            <Btn buttonColor="main01" fontColor="white">
+              책 & 인강 추천
+            </Btn>
+          </Link>
+          <Text>
+            무려.. 무려.... 실검 1위 책!!<br></br>
+            “개발자가 못하겠다고 하면 이렇게 말하세요.”
+          </Text>
           <UserName>By Product Designer 장석연</UserName>
         </Left>
         <Right>
           <Img src={Advertisement1} alt="광고 사진" />
         </Right>
       </ColorBackground>
+      <NumberButton currentNum="1" maximumNum="3" />
     </Wrapper>
   );
 };
@@ -27,10 +34,8 @@ export default Advertisement;
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 522px;
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
+  height: 500px;
+  margin-top: 80px;
 `;
 
 const ColorBackground = styled.div`
