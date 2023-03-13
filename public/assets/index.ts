@@ -10,3 +10,5 @@ export { default as LoungeIllustration } from "./lounge_illustration.png";
 export { default as LoungeVideo } from "./lounge_video.png";
 export { default as LoungeProduct } from './lounge_product.png';
 export { default as Advertisement1 } from './advertisement1.svg';
+export { default as TossLogo } from './tosslogo.svg';
+export { default as GroupIcon } from './groupicon.svg';
