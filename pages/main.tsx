@@ -1,7 +1,7 @@
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import styled from "@emotion/styled";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RecommendBookDummy } from "@/utils/constance/recommendpage";
 import { StudyPostDummy } from "@/utils/constance/studypost";
 import { StudyPostType } from "@/utils/types/study";
@@ -10,32 +10,42 @@ import RecommendBook from "@/components/common/recommend/book";
 import StudyPost from "@/components/common/study/post";
 import MakeStudyButton from "@/components/make";
 import RandomSite from "@/components/randomsite";
-import Image from "next/image";
-import Advertisement from "@/components/advertisement";
-
-const images = ["", "", ""];
+import Advertisement1 from "@/components/advertisement/advertisement1";
+import Advertisement2 from "@/components/advertisement/advertisement2";
+import Advertisement3 from "@/components/advertisement/advertisement3";
 
 const Main: React.FC = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const components = [Advertisement1, Advertisement2, Advertisement3];
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const intervalIdRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setCurrentImageIndex(
-        (currentIndex) => (currentIndex + 1) % images.length
-      );
-    }, 3000);
+    intervalIdRef.current = window.setInterval(() => {
+      setCurrentIndex((currentIndex) => (currentIndex + 1) % components.length);
+    }, 7000);
 
-    return () => clearTimeout(timeoutId);
-  }, [currentImageIndex]);
+    return () => clearInterval(intervalIdRef.current!);
+  }, [components.length]);
+
   return (
     <MainWrapper>
-      <Image src={images[currentImageIndex]} alt="Image"/>
-      <Header/>
-      <Advertisement/>
+      <Header />
+      <AdvertisementComponents>
+        {components.map((Component, index) => (
+          <div
+            key={index}
+            className={`component ${
+              index === currentIndex ? "slide-in" : "slide-out"
+            }`}
+          >
+            <Component />
+          </div>
+        ))}
+      </AdvertisementComponents>
       <ItemWrapper>
         <Text>오늘의 추천 스터디 ✨</Text>
         <StudyItemWrapper>
-          {StudyPostDummy.map((element: StudyPostType,  idx: number) => (
+          {StudyPostDummy.map((element: StudyPostType, idx: number) => (
             <StudyPost
               key={idx}
               image_url={element.image_url}
@@ -47,11 +57,21 @@ const Main: React.FC = () => {
         </StudyItemWrapper>
       </ItemWrapper>
       <RecommendSite>
-        <RandomSite inner="blue" title="디자인 인강? 이거면 충분해" contents="Toss UX/UI Designer" type="Wanted"/>
-        <RandomSite inner="pink" title="이 아이콘 무조껀 뜹니다." contents="3D icon 이거보다 이쁜 곳 나와보라그래!" type="3D icon"/>
+        <RandomSite
+          inner="blue"
+          title="디자인 인강? 이거면 충분해"
+          contents="Toss UX/UI Designer"
+          type="Wanted"
+        />
+        <RandomSite
+          inner="pink"
+          title="이 아이콘 무조껀 뜹니다."
+          contents="3D icon 이거보다 이쁜 곳 나와보라그래!"
+          type="3D icon"
+        />
       </RecommendSite>
       <ItemWrapper>
-        <Text>고수들이 읽는 책😎</Text> 
+        <Text>고수들이 읽는 책😎</Text>
         <BookItemWrapper>
           {RecommendBookDummy.map(
             (element: RecommendationType, idx: number) => (
@@ -67,7 +87,7 @@ const Main: React.FC = () => {
         </BookItemWrapper>
       </ItemWrapper>
       <MakeStudyButton />
-      <Footer/>
+      <Footer />
     </MainWrapper>
   );
 };
@@ -80,10 +100,50 @@ const MainWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  .img {
+  overflow-x: hidden; 
+  .component {
+    position: absolute;
     width: 100%;
-    height: 500px;
+    height: 100%;
   }
+
+  .slide-in {
+    animation-name: slide-in;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+
+  .slide-out {
+    animation-name: slide-out;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+`;
+
+const AdvertisementComponents = styled.div`
+  display: flex;
+  width: 100%;
+  height: 500px;
 `;
 
 const ItemWrapper = styled.div`
