@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import Button from "../common/button";
 import { Advertisement1 } from "@/public/assets";
 import Image from "next/image";
-import NumberButton from "./numberbutton";
 import Link from "next/link";
 
 const Advertisement = () => {
@@ -25,7 +24,6 @@ const Advertisement = () => {
           <Img src={Advertisement1} alt="광고 사진" />
         </Right>
       </ColorBackground>
-      <NumberButton currentNum="1" maximumNum="3" />
     </Wrapper>
   );
 };

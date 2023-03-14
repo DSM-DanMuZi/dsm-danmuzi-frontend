@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
-import NumberButton from "./numberbutton";
 
 const advertisement2 = () => {
   return (
     <>
       <Wrapper></Wrapper>
-      <NumberButton currentNum="3" maximumNum="3" />
     </>
   );
 };
