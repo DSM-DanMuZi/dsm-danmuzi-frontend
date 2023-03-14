@@ -14,6 +14,7 @@ import RandomSite from "@/components/randomsite";
 import Advertisement1 from "@/components/advertisement/advertisement1";
 import Advertisement2 from "@/components/advertisement/advertisement2";
 import Advertisement3 from "@/components/advertisement/advertisement3";
+import NumberButton from "@/components/advertisement/numberbutton";
 
 const Main: React.FC = () => {
   const components = [Advertisement1, Advertisement2, Advertisement3];
@@ -43,6 +44,7 @@ const Main: React.FC = () => {
           </div>
         ))}
       </AdvertisementComponents>
+      <NumberButton maximumNum="3" />
       <ItemWrapper>
         <Text>오늘의 추천 스터디 ✨</Text>
         <StudyItemWrapper>
