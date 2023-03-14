@@ -1,16 +1,32 @@
 import styled from "@emotion/styled";
+import React, { useState, useEffect } from "react";
 
 interface PropsType {
-  currentNum: string;
   maximumNum: string;
 }
 
-const NumberButton = ({ currentNum, maximumNum }: PropsType) => {
+const NumberButton = ({ maximumNum }: PropsType) => {
+  const [count, setCount] = useState<number>(1);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (count >= 3) {
+        setCount(count - 2);
+      } else {
+        setCount(count + 1);
+      }
+    }, 7000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [count]);
+
+
   return (
     <ButtonWrapper>
       <NumberWrapper>
         <NumState>
-          {currentNum}/{maximumNum}
+          {count}/{maximumNum}
         </NumState>
       </NumberWrapper>
       <DotWrapper>
@@ -29,6 +45,7 @@ const ButtonWrapper = styled.div`
   height: 42px;
   position: absolute;
   bottom: 330px;
+  left: 0;
   margin-left: 250px;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.main03};

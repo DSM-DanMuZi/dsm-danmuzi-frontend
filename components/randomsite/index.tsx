@@ -80,9 +80,3 @@ const Contents = styled.p`
 const Type = styled.p`
   ${({ theme }) => theme.font.body5}
 `;
-
-const _Image = styled(Image)`
-  width: 320px;
-  height: 400px;
-  margin-bottom: 18px;
-`;
