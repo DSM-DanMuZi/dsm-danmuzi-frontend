@@ -89,6 +89,7 @@ const _Wrapper = styled.header`
   font-family: "Pretendard";
   ${TextCss}
   position: fixed;
+  z-index: 99;
 `;
 
 const _LogoWrapper = styled(Link)`

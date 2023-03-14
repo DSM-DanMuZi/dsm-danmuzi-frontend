@@ -25,9 +25,10 @@ const _Wrapper = styled.div`
   width: 320px;
   display: flex;
   flex-direction: column;
-  transition: all 0.125s linear;
+  transition: all 0.12s linear;
+  overflow: hidden;
   :hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 `;
 
