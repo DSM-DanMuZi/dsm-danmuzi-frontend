@@ -1,6 +1,7 @@
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import styled from "@emotion/styled";
+import Head from "next/head";
 import { GroupIcon, TossLogo } from "@/public/assets";
 import React, { useState, useEffect, useRef } from "react";
 import { RecommendBookDummy } from "@/utils/constance/recommendpage";
@@ -14,36 +15,21 @@ import RandomSite from "@/components/randomsite";
 import Advertisement1 from "@/components/advertisement/advertisement1";
 import Advertisement2 from "@/components/advertisement/advertisement2";
 import Advertisement3 from "@/components/advertisement/advertisement3";
+import SliderWrapper from "@/components/advertisement/slider";
 import NumberButton from "@/components/advertisement/numberbutton";
 
-const Main: React.FC = () => {
-  const components = [Advertisement1, Advertisement2, Advertisement3];
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const intervalIdRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    intervalIdRef.current = window.setInterval(() => {
-      setCurrentIndex((currentIndex) => (currentIndex + 1) % components.length);
-    }, 7000);
-
-    return () => clearInterval(intervalIdRef.current!);
-  }, [components.length]);
-
+const Main: React.FC = () => {1
   return (
     <MainWrapper>
+      <Head>
+        <title>메인페이지</title>
+      </Head>
       <Header />
-      <AdvertisementComponents>
-        {components.map((Component, index) => (
-          <div
-            key={index}
-            className={`component ${
-              index === currentIndex ? "slide-in" : "slide-out"
-            }`}
-          >
-            <Component />
-          </div>
-        ))}
-      </AdvertisementComponents>
+      <SliderWrapper>
+        <Advertisement1/>
+        <Advertisement2/>
+        <Advertisement3/>
+      </SliderWrapper>
       <NumberButton maximumNum="3" />
       <ItemWrapper>
         <Text>오늘의 추천 스터디 ✨</Text>
@@ -108,6 +94,7 @@ const MainWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   overflow-x: hidden;
+  overflow-y: auto;
   .component {
     position: absolute;
     width: 100%;
@@ -151,6 +138,8 @@ const AdvertisementComponents = styled.div`
   display: flex;
   width: 100%;
   height: 500px;
+  -ms-overflow-style: none; /* 익스플로러, 앳지 */
+    scrollbar-width: none; /* 파이어폭스 */
 `;
 
 const ItemWrapper = styled.div`

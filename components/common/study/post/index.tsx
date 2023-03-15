@@ -27,6 +27,10 @@ const _Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  transition: all 0.12s linear;
+  :hover {
+    transform: scale(1.03);
+  }
 `;
 
 const _Image = styled(Image)`
