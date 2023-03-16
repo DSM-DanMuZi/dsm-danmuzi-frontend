@@ -17,12 +17,7 @@ import Advertisement2 from "@/components/advertisement/advertisement2";
 import Advertisement3 from "@/components/advertisement/advertisement3";
 import NumberButton from "@/components/advertisement/numberbutton";
 
-type CounterProps = {
-  count: number;
-  setCount: (value: number) => void;
-}
-
-const Main = (props: CounterProps) => {
+const Main = () => {
   const components = [Advertisement1, Advertisement2, Advertisement3];
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const intervalIdRef = useRef<number | null>(null);
@@ -30,11 +25,15 @@ const Main = (props: CounterProps) => {
   useEffect(() => {
     intervalIdRef.current = window.setInterval(() => {
       setCurrentIndex((currentIndex) => (currentIndex + 1) % components.length);
-      console.log(props.count);
     }, 7000);
 
     return () => clearInterval(intervalIdRef.current!);
   }, [components.length]);
+
+  const handleDotClick = (index: number) => {
+    setCurrentIndex(index);
+    clearInterval(intervalIdRef.current!);
+  };
 
   return (
     <MainWrapper className="scroll">
@@ -54,6 +53,7 @@ const Main = (props: CounterProps) => {
           </div>
         ))}
       </AdvertisementComponents>
+      <NumberButton active={true} maximumNum="3" currentIndex={currentIndex} handleDotClick={handleDotClick} />
       <ItemWrapper>
         <Text>오늘의 추천 스터디 ✨</Text>
         <StudyItemWrapper>
