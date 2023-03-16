@@ -15,22 +15,45 @@ import RandomSite from "@/components/randomsite";
 import Advertisement1 from "@/components/advertisement/advertisement1";
 import Advertisement2 from "@/components/advertisement/advertisement2";
 import Advertisement3 from "@/components/advertisement/advertisement3";
-import SliderWrapper from "@/components/advertisement/slider";
 import NumberButton from "@/components/advertisement/numberbutton";
 
-const Main: React.FC = () => {1
+type CounterProps = {
+  count: number;
+  setCount: (value: number) => void;
+}
+
+const Main = (props: CounterProps) => {
+  const components = [Advertisement1, Advertisement2, Advertisement3];
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const intervalIdRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    intervalIdRef.current = window.setInterval(() => {
+      setCurrentIndex((currentIndex) => (currentIndex + 1) % components.length);
+      console.log(props.count);
+    }, 7000);
+
+    return () => clearInterval(intervalIdRef.current!);
+  }, [components.length]);
+
   return (
-    <MainWrapper>
+    <MainWrapper className="scroll">
       <Head>
         <title>메인페이지</title>
       </Head>
       <Header />
-      <SliderWrapper>
-        <Advertisement1/>
-        <Advertisement2/>
-        <Advertisement3/>
-      </SliderWrapper>
-      <NumberButton maximumNum="3" />
+      <AdvertisementComponents>
+        {components.map((Component, index) => (
+          <div
+            key={index}
+            className={`component ${
+              index === currentIndex ? "slide-in" : "slide-out"
+            }`}
+          >
+            <Component />
+          </div>
+        ))}
+      </AdvertisementComponents>
       <ItemWrapper>
         <Text>오늘의 추천 스터디 ✨</Text>
         <StudyItemWrapper>
@@ -93,8 +116,14 @@ const MainWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  overflow-x: hidden;
-  overflow-y: auto;
+`;
+const AdvertisementComponents = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+
   .component {
     position: absolute;
     width: 100%;
@@ -134,13 +163,6 @@ const MainWrapper = styled.div`
   }
 `;
 
-const AdvertisementComponents = styled.div`
-  display: flex;
-  width: 100%;
-  height: 500px;
-  -ms-overflow-style: none; /* 익스플로러, 앳지 */
-    scrollbar-width: none; /* 파이어폭스 */
-`;
 
 const ItemWrapper = styled.div`
   width: 80%;
