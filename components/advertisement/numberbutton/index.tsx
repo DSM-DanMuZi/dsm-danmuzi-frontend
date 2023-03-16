@@ -9,8 +9,6 @@ interface PropsType {
 }
 
 const NumberButton = ({ maximumNum, currentIndex, handleDotClick }: PropsType) => {
-  const [count, setCount] = useState<number>(1);
-
   return (
     <ButtonWrapper>
       <NumberWrapper>
