@@ -1,38 +1,31 @@
 import styled from "@emotion/styled";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface PropsType {
   maximumNum: string;
+  currentIndex: number;
+  handleDotClick: (index: number) => void;
+  active: boolean;
 }
 
-const NumberButton = ({ maximumNum }: PropsType) => {
+const NumberButton = ({ maximumNum, currentIndex, handleDotClick }: PropsType) => {
   const [count, setCount] = useState<number>(1);
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (count >= 3) {
-        setCount(count - 2);
-      } else {
-        setCount(count + 1);
-      }
-    }, 7000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [count]);
-
 
   return (
     <ButtonWrapper>
       <NumberWrapper>
         <NumState>
-          {count}/{maximumNum}
+          {currentIndex + 1}/{maximumNum}
         </NumState>
       </NumberWrapper>
       <DotWrapper>
-        <Dot/>
-        <Dot/>
-        <Dot/>
+        {[...Array(parseInt(maximumNum))].map((_, index) => (
+          <Dot
+            key={index}
+            active={index === currentIndex}
+            onClick={() => handleDotClick(index)}
+          />
+        ))}
       </DotWrapper>
     </ButtonWrapper>
   );
@@ -41,17 +34,16 @@ const NumberButton = ({ maximumNum }: PropsType) => {
 export default NumberButton;
 
 const ButtonWrapper = styled.div`
-  width: 122px;
-  height: 42px;
+  width: auto;
   position: absolute;
   bottom: 330px;
   left: 0;
   margin-left: 250px;
   border-radius: 10px;
+  padding: 10px;
   background-color: ${({ theme }) => theme.color.main03};
   display: flex;
   align-items: center;
-  justify-content: center;    
 `;
 
 const NumberWrapper = styled.div`
@@ -77,13 +69,13 @@ const DotWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Dot = styled.div`
+const Dot = styled.div<{ active: boolean }>`
   width: 10px;
   height: 10px;
   border-radius: 10px;
-  background-color: ${({theme}) => theme.color.main05};
+  background-color: ${({ theme, active }) => active ? theme.color.main01 : theme.color.main05};
   cursor: pointer;
-  .hover {
-    background-color: ${({theme}) => theme.color.main02};
+  :hover {
+    background-color: ${({theme}) => theme.color.main01};
   }
 `;
