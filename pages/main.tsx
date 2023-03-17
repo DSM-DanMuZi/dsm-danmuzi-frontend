@@ -3,10 +3,10 @@ import Footer from "@/components/common/footer";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import { GroupIcon, TossLogo } from "@/public/assets";
-import React, { useState, useEffect, useRef, FC, ReactElement } from "react";
-import { RecommendBookDummy } from "@/utils/constance/recommendpage";
+import React, { useState, useEffect, useRef, FC } from "react";
 import { StudyPostDummy } from "@/utils/constance/studypost";
 import { StudyPostType } from "@/utils/types/study";
+import { RecommendBookDummy } from "@/utils/constance/recommendpage";
 import { RecommendationType } from "@/utils/types/recommendpage";
 import RecommendBook from "@/components/common/recommend/book";
 import StudyPost from "@/components/common/study/post";
@@ -22,7 +22,7 @@ type ComponentType = FC<{}>;
 interface Props {
   components: ComponentType[];
   currentIndex: number;
-}
+} 
 
 const Main: FC<Props> = () => {
   const components: ComponentType[] = [
@@ -64,12 +64,7 @@ const Main: FC<Props> = () => {
           </ComponentWrapper>
         ))}
       </AdvertisementComponents>
-      <NumberButton
-        active={true}
-        maximumNum="3"
-        currentIndex={currentIndex}
-        handleDotClick={handleDotClick}
-      />
+      <NumberButton active={true} maximumNum="3" currentIndex={currentIndex} handleDotClick={handleDotClick} />
       <ItemWrapper>
         <Text>오늘의 추천 스터디 ✨</Text>
         <StudyItemWrapper>
@@ -139,6 +134,7 @@ const AdvertisementComponents = styled.div`
   width: 100%;
   height: 600px;
   overflow: hidden;
+
   .slide-in {
     animation-name: slide-in;
     animation-duration: 2s;
@@ -182,7 +178,7 @@ const ItemWrapper = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
-  margin-top: 180px;
+  margin-top: 100px;
   cursor: pointer;
 `;
 
