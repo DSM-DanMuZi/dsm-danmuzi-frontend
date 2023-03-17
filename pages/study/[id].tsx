@@ -48,9 +48,9 @@ const StudyPost = ({
         <_Texts>
           <_Title>{title}</_Title>
           <_Contents>{contents}</_Contents>
-          {mainHashTag?.map((v, i) => (
+          {mainHashTag?.map((e: string, i: number) => (
             <_TagWrapper key={`mainHashTag${i}`}>
-              <_TagText>{v}</_TagText>
+              <_TagText>{e}</_TagText>
             </_TagWrapper>
           ))}
         </_Texts>
@@ -65,16 +65,16 @@ const StudyPost = ({
               공유하기
             </Button>
           </_Btn>
-          <_Like src={StudyLike} alt="image" />
+          <Image src={StudyLike} alt="image" />
         </_Functions>
       </_Main>
       <_Info>
         <_MemberList>
           <_Member>동아리 멤버</_Member>
-          {member?.map((v, i) => (
+          {member?.map((e: MemberType, i: number) => (
             <_SortMember key={`member${i}`}>
-              <_Profile src={v.image} alt="image" />
-              <_MemberName>{v.name}</_MemberName>
+              <_Profile src={e.image} alt="image" />
+              <_MemberName>{e.name}</_MemberName>
             </_SortMember>
           ))}
         </_MemberList>
@@ -83,8 +83,8 @@ const StudyPost = ({
             <_Post>
               <_PostTitle>{postTitle}</_PostTitle>
               <_PostWrite>{post}</_PostWrite>
-              {postHashTag?.map((v, i) => (
-                <_PostTag key={`postHashTag${i}`}>{v}</_PostTag>
+              {postHashTag?.map((e: string, i: number) => (
+                <_PostTag key={`postHashTag${i}`}>{e}</_PostTag>
               ))}
             </_Post>
             <_PostImage src={postImage} alt="image" />
@@ -94,12 +94,12 @@ const StudyPost = ({
             </_PostCommentBox>
           </_PostBox>
           <_Comments>
-            {comment?.map((v, i) => (
+            {comment?.map((e: CommentType, i: number) => (
               <_CommentWrapper key={`comment${i}`}>
-                <_CommentProfile src={v.image} alt="image" />
+                <_CommentProfile src={e.image} alt="image" />
                 <_CommentBox>
-                  <_CommentName>{v.name}</_CommentName>
-                  <_Comment>{v.comment}</_Comment>
+                  <_CommentName>{e.name}</_CommentName>
+                  <_Comment>{e.comment}</_Comment>
                 </_CommentBox>
               </_CommentWrapper>
             ))}
@@ -171,7 +171,7 @@ const _Btn = styled.div`
   margin-right: 30px;
 `;
 
-const _Like = styled(Image)``;
+
 
 const _Info = styled.div`
   background-color: #f6f6f6;
