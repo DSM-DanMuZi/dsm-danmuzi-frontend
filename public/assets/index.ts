@@ -3,6 +3,7 @@ export { default as SearchButton } from "./search-button.svg";
 export { default as Logo } from "./main-logo.svg";
 export { default as LoungeDevelop } from "./lounge_develop.png";
 export { default as LoginMain } from "./login_image.svg";
+export { default as StudyLike } from "./study_like.png";
 export { default as LoungeUiUx } from "./lounge_ui_ux.png";
 export { default as LoungePlanning } from "./lounge_planning.png";
 export { default as LoungeGraphic } from "./lounge_graphic.png";
