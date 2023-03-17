@@ -3,7 +3,7 @@ import Footer from "@/components/common/footer";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import { GroupIcon, TossLogo } from "@/public/assets";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, FC, ReactElement } from "react";
 import { RecommendBookDummy } from "@/utils/constance/recommendpage";
 import { StudyPostDummy } from "@/utils/constance/studypost";
 import { StudyPostType } from "@/utils/types/study";
@@ -17,8 +17,19 @@ import Advertisement2 from "@/components/advertisement/advertisement2";
 import Advertisement3 from "@/components/advertisement/advertisement3";
 import NumberButton from "@/components/advertisement/numberbutton";
 
-const Main = () => {
-  const components = [Advertisement1, Advertisement2, Advertisement3];
+type ComponentType = FC<{}>;
+    
+interface Props {
+  components: ComponentType[];
+  currentIndex: number;
+}
+
+const Main: FC<Props> = () => {
+  const components: ComponentType[] = [
+    Advertisement1,
+    Advertisement2,
+    Advertisement3,
+  ];
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const intervalIdRef = useRef<number | null>(null);
 
@@ -36,24 +47,29 @@ const Main = () => {
   };
 
   return (
-    <MainWrapper className="scroll">
+    <MainWrapper>
       <Head>
         <title>메인페이지</title>
       </Head>
       <Header />
       <AdvertisementComponents>
         {components.map((Component, index) => (
-          <div
+          <ComponentWrapper
             key={index}
             className={`component ${
               index === currentIndex ? "slide-in" : "slide-out"
             }`}
           >
             <Component />
-          </div>
+          </ComponentWrapper>
         ))}
       </AdvertisementComponents>
-      <NumberButton active={true} maximumNum="3" currentIndex={currentIndex} handleDotClick={handleDotClick} />
+      <NumberButton
+        active={true}
+        maximumNum="3"
+        currentIndex={currentIndex}
+        handleDotClick={handleDotClick}
+      />
       <ItemWrapper>
         <Text>오늘의 추천 스터디 ✨</Text>
         <StudyItemWrapper>
@@ -123,13 +139,6 @@ const AdvertisementComponents = styled.div`
   width: 100%;
   height: 600px;
   overflow: hidden;
-
-  .component {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
   .slide-in {
     animation-name: slide-in;
     animation-duration: 2s;
@@ -163,6 +172,11 @@ const AdvertisementComponents = styled.div`
   }
 `;
 
+const ComponentWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
 
 const ItemWrapper = styled.div`
   width: 80%;
