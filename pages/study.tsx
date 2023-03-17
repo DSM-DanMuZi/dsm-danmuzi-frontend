@@ -70,6 +70,7 @@ const _TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 180px;
 `;
 
 const _Title = styled.p`
