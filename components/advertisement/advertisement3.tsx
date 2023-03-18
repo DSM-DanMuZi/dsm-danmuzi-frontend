@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 
-const advertisement3 = () => {
+const Advertisement3 = () => {
   return <Wrapper></Wrapper>;
 };
 
-export default advertisement3;
+export default Advertisement3;
 
 const Wrapper = styled.div`
   width: 100%;
