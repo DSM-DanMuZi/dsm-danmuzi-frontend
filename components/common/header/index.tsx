@@ -106,7 +106,7 @@ const _Image = styled(Image)`
 const _LogoName = styled.div`
   font-weight: bold;
   font-size: ${({ theme }) => theme.font.title3};
-   color: ${({theme}) => theme.color.gray000};
+  color: ${({ theme }) => theme.color.gray000};
   display: grid;
   place-content: center;
   margin-left: 16px;
