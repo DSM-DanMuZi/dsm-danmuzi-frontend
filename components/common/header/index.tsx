@@ -1,15 +1,21 @@
 import styled from "@emotion/styled";
 import { SearchButton, Logo } from "@/public/assets";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/router";
 import { css } from "@emotion/react";
 import Link from "next/link";
 import Button from "../button";
 
 const Header = () => {
-  const [login, setLogin] = useState<Boolean>(true);
-  const [search, setSearch] = useState<Boolean>(false);
+  const [login, setLogin] = useState<boolean>(false);
+  const [search, setSearch] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const router = useRouter();
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
 
   const handleClick = () => {
     setSearch(!search);
@@ -19,7 +25,9 @@ const Header = () => {
     e.stopPropagation();
   };
 
-  const router = useRouter();
+  const onClick = (pathname: string) => {
+    router.push(`/${pathname}`);
+  };
 
   return (
     <_Wrapper>
@@ -29,7 +37,13 @@ const Header = () => {
       </_LogoWrapper>
       {search && (
         <SearchBarContainer onClick={searchOut}>
-          <SearchBar placeholder="검색어를 입력해주세요." />
+          <SearchBar
+            animation={search}
+            onChange={onChange}
+            value={searchValue}
+            name="searchBar"
+            placeholder="검색어를 입력해주세요."
+          />
         </SearchBarContainer>
       )}
       {!search && (
@@ -37,7 +51,11 @@ const Header = () => {
       )}
       {!login ? (
         <_LoginWrapper>
-          <Button buttonColor="main01" fontColor="gray100">
+          <Button
+            onClick={() => onClick("login")}
+            buttonColor="main01"
+            fontColor="gray100"
+          >
             로그인
           </Button>
           <Button buttonColor="gray100" fontColor="gray000">
@@ -124,7 +142,8 @@ const SearchBarContainer = styled.div`
   background-color: ${({ theme }) => theme.color.gray200};
 `;
 
-const SearchBar = styled.input`
+const SearchBar = styled.input<{ animation: boolean }>`
+  transition: ${(props) => (props.animation ? "width 0.35s linear" : "none")};
   width: 270px;
   height: 40px;
   ${({ theme }) => theme.font.body5}
