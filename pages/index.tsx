@@ -62,7 +62,7 @@ const Main: FC<Props> = () => {
               index === currentIndex ? "slide-in" : "slide-out"
             }`}
           >
-            <Component image_url={Advertisement1}/>
+            <Component image_url={Advertisement1} />
           </ComponentWrapper>
         ))}
       </AdvertisementComponents>
