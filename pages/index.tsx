@@ -3,7 +3,7 @@ import Footer from "@/components/common/footer";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import { GroupIcon, TossLogo } from "@/public/assets";
-import React, { useState, useEffect, useRef, FC } from "react";
+import { useState, useEffect, useRef, FC } from "react";
 import { StudyPostDummy } from "@/utils/constance/studypost";
 import { StudyPostType } from "@/utils/types/study";
 import { RecommendBookDummy } from "@/utils/constance/recommendpage";
