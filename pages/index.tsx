@@ -188,7 +188,7 @@ const ItemWrapper = styled.div`
 `;
 
 const RecommendSite = styled.div`
-  width: 1520px;
+  width: 80%;
   display: flex;
   justify-content: space-between;
 `;
