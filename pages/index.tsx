@@ -2,7 +2,7 @@ import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import styled from "@emotion/styled";
 import Head from "next/head";
-import { GroupIcon, TossLogo } from "@/public/assets";
+import { GroupIcon, TossLogo, Advertisement1 } from "@/public/assets";
 import React, { useState, useEffect, useRef, FC } from "react";
 import { StudyPostDummy } from "@/utils/constance/studypost";
 import { StudyPostType } from "@/utils/types/study";
@@ -12,12 +12,14 @@ import RecommendBook from "@/components/common/recommend/book";
 import StudyPost from "@/components/common/study/post";
 import MakeStudyButton from "@/components/make";
 import RandomSite from "@/components/randomsite";
-import Advertisement1 from "@/components/advertisement/advertisement1";
-import Advertisement2 from "@/components/advertisement/advertisement2";
-import Advertisement3 from "@/components/advertisement/advertisement3";
+import Advertisement from "@/components/advertisement/advertisement";
 import NumberButton from "@/components/advertisement/numberbutton";
 
-type ComponentType = FC<{}>;
+interface AdvertisementType {
+  image_url: string;
+}
+
+type ComponentType = FC<AdvertisementType>;
 
 interface Props {
   components: ComponentType[];
@@ -26,9 +28,9 @@ interface Props {
 
 const Main: FC<Props> = () => {
   const components: ComponentType[] = [
-    Advertisement1,
-    Advertisement2,
-    Advertisement3,
+    Advertisement,
+    Advertisement,
+    Advertisement,
   ];
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const intervalIdRef = useRef<number | null>(null);
@@ -60,7 +62,7 @@ const Main: FC<Props> = () => {
               index === currentIndex ? "slide-in" : "slide-out"
             }`}
           >
-            <Component />
+            <Component image_url={Advertisement1}/>
           </ComponentWrapper>
         ))}
       </AdvertisementComponents>

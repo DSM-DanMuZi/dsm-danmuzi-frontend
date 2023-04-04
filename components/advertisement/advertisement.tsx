@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
 import Button from "../common/button";
-import { Advertisement1 } from "@/public/assets";
 import Image from "next/image";
 import Link from "next/link";
 
-const Advertisement = () => {
+type AdvertisementType = {
+  image_url: string;
+}
+
+const Advertisement: React.FC<AdvertisementType> = ({ image_url }) => {
   return (
     <Wrapper>
       <ColorBackground>
@@ -21,7 +24,7 @@ const Advertisement = () => {
           <UserName>By Product Designer 장석연</UserName>
         </Left>
         <Right>
-          <Img src={Advertisement1} alt="광고 사진" />
+          <Img src={image_url} alt="광고 사진" />
         </Right>
       </ColorBackground>
     </Wrapper>
