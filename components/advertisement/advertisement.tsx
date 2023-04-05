@@ -5,28 +5,26 @@ import Link from "next/link";
 
 type AdvertisementType = {
   image_url: string;
-}
+};
 
 const Advertisement: React.FC<AdvertisementType> = ({ image_url }) => {
   return (
     <Wrapper>
-      <ColorBackground>
-        <Left>
-          <Link href="./recommendedpage">
-            <Btn buttonColor="main01" fontColor="white">
-              책 & 인강 추천
-            </Btn>
-          </Link>
-          <Text>
-            무려.. 무려.... 실검 1위 책!!<br></br>
-            “개발자가 못하겠다고 하면 이렇게 말하세요.”
-          </Text>
-          <UserName>By Product Designer 장석연</UserName>
-        </Left>
-        <Right>
-          <Img src={image_url} alt="광고 사진" />
-        </Right>
-      </ColorBackground>
+      <Left>
+        <Link href="./recommendedpage">
+          <Btn buttonColor="main01" fontColor="white">
+            책 & 인강 추천
+          </Btn>
+        </Link>
+        <Text>
+          무려.. 무려.... 실검 1위 책!!<br></br>
+          “개발자가 못하겠다고 하면 이렇게 말하세요.”
+        </Text>
+        <UserName>By Product Designer 장석연</UserName>
+      </Left>
+      <Right>
+        <Img src={image_url} alt="광고 사진" />
+      </Right>
     </Wrapper>
   );
 };
@@ -37,14 +35,13 @@ const Wrapper = styled.div`
   width: 100%;
   height: 500px;
   margin-top: 80px;
-`;
-
-const ColorBackground = styled.div`
-  width: 100%;
-  height: 500px;
   background-color: ${({ theme }) => theme.color.main02};
   display: flex;
   justify-content: space-between;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-use-select: none;
+  user-select: none;
 `;
 
 const Left = styled.div`
