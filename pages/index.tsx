@@ -51,7 +51,7 @@ const Main: FC<Props> = () => {
   return (
     <MainWrapper>
       <Head>
-        <title>메인페이지</title>
+        <title>단무지</title>
       </Head>
       <Header />
       <AdvertisementComponents>
